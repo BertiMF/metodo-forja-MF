@@ -1,109 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Método Forja - MF</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área Protegida - Módulos</title>
 </head>
-    <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyBKtKrRP4AjLHcdeEdyTlTZC9hHdv5y7no",
-    authDomain: "metodo-forja.firebaseapp.com",
-    projectId: "metodo-forja",
-    storageBucket: "metodo-forja.firebasestorage.app",
-    messagingSenderId: "949719386034",
-    appId: "1:949719386034:web:5c015b5fbe082821ea86ab",
-    measurementId: "G-6Z9EJLY5LZ"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      // Se não estiver logado, redireciona para login
-      window.location.href = "/login/";
-    }
-  });
-</script>
 <body>
-    <header>
-        <h1>Método Forja - MF</h1>
-        <p>“Do zero ao estúdio próprio. Forjado pra vencer.”</p>
-        <a href="#modulos" class="btn">Conheça os módulos</a>
-    </header>
+  <h1>Bem-vindo à Área Protegida do Método FORJA</h1>
+  <button onclick="logout()" style="position:fixed;top:10px;right:10px;">Sair</button>
 
-    <main id="modulos">
-        <section>
-            <h2>🔥 Módulo 1 — BRASA</h2>
-            <p>A chama inicial do propósito</p>
-            <ul>
-                <li>Materiais de qualidade</li>
-                <li>Fornecedores mais baratos</li>
-                <li>Biossegurança</li>
-                <li>Como fazer materiais (diluente, pele artificial)</li>
-            </ul>
-        </section>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 
-        <section>
-            <h2>🛠️ Módulo 2 — MARTELADA</h2>
-            <p>Construindo estrutura firme</p>
-            <ul>
-                <li>Regulagem de máquina</li>
-                <li>Agulhas e cartuchos</li>
-                <li>Diluição em batoques</li>
-                <li>Sumie</li>
-                <li>Técnica de traço, sombra, preenchimento, texturas</li>
-                <li>Treinos avançados</li>
-                <li>Gestão financeira, precificação, atendimento</li>
-            </ul>
-        </section>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBKtKrRP4AjLHcdeEdyTlTZC9hHdv5y7no",
+      authDomain: "metodo-forja.firebaseapp.com",
+      projectId: "metodo-forja",
+      storageBucket: "metodo-forja.firebasestorage.app",
+      messagingSenderId: "949719386034",
+      appId: "1:949719386034:web:5c015b5fbe082821ea86ab",
+      measurementId: "G-6Z9EJLY5LZ"
+    };
 
-        <section>
-            <h2>🔥 Módulo 3 — CHAMA</h2>
-            <p>Autoridade e posicionamento no mercado</p>
-            <ul>
-                <li>Aplicativos</li>
-                <li>Redes sociais</li>
-                <li>Marca pessoal</li>
-                <li>Comunicação profissional</li>
-                <li>Conexão com o cliente</li>
-                <li>Projetos</li>
-            </ul>
-        </section>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-        <section>
-            <h2>🧠 Módulo 4 — AÇO</h2>
-            <p>Liderança e visão de dono de estúdio</p>
-            <ul>
-                <li>Como montar e gerenciar estúdio</li>
-                <li>Parcerias</li>
-                <li>Alta performance</li>
-                <li>Maestria: eu, emocional, social, mente, business</li>
-            </ul>
-        </section>
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = "/login/";
+      }
+    });
 
-        <section>
-            <h2>⚒️ Módulo 5 — FORJADO</h2>
-            <p>Entrega final — Tatuador empresário pronto</p>
-            <ul>
-                <li>Criação do projeto do estúdio</li>
-                <li>Técnicas de vendas</li>
-                <li>Gerenciar lista de leads</li>
-                <li>Estratégias de marketing, vendas, expansão</li>
-                <li>Mentalidade de longo prazo</li>
-            </ul>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2025 Método Forja - Todos os direitos reservados.</p>
-        <a href="https://wa.me/5549988032346" class="whatsapp" target="_blank">Fale no WhatsApp</a>
-    </footer>
+    window.logout = function () {
+      signOut(auth).then(() => {
+        window.location.href = "/login/";
+      });
+    };
+  </script>
 </body>
 </html>
