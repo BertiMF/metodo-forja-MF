@@ -7,6 +7,30 @@
     <title>Método Forja - MF</title>
     <link rel="stylesheet" href="style.css" />
 </head>
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBKtKrRP4AjLHcdeEdyTlTZC9hHdv5y7no",
+    authDomain: "metodo-forja.firebaseapp.com",
+    projectId: "metodo-forja",
+    storageBucket: "metodo-forja.firebasestorage.app",
+    messagingSenderId: "949719386034",
+    appId: "1:949719386034:web:5c015b5fbe082821ea86ab",
+    measurementId: "G-6Z9EJLY5LZ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      // Se não estiver logado, redireciona para login
+      window.location.href = "/login/";
+    }
+  });
+</script>
 <body>
     <header>
         <h1>Método Forja - MF</h1>
